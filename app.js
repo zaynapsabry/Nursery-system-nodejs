@@ -11,8 +11,11 @@ const authMW = require("./MiddleWares/authenticationMW");
 
 //*************************** Server creation ****************************//
 const server = express();
+
+//*************************** DB connection ****************************//
+const mongoURL = process.env.MONGO_URL || "mongodb://localhost:27017/nodeDB";
 mongoose
-  .connect("mongodb://localhost:27017/nodeDB")
+  .connect(mongoURL)
   .then(() => {
     console.log("DB Connected");
     server.listen(8080, () => {
